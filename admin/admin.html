@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Kabir Shah Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+<!-- ================= LOGIN VIEW ================= -->
+<section id="loginView" class="login-view">
+  <form id="loginForm" class="login-card" novalidate>
+    <p class="login-mark">KS / ADMIN</p>
+    <h1>Sign in</h1>
+    <p class="login-sub">Manage contact form submissions.</p>
+
+    <div class="form-row">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" required autocomplete="username" />
+    </div>
+    <div class="form-row">
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" required autocomplete="current-password" />
+    </div>
+
+    <button type="submit" class="btn btn--primary" id="loginBtn">
+      <span class="btn-text">Sign in</span>
+      <span class="btn-spinner"></span>
+    </button>
+    <p class="login-error" id="loginError" role="alert"></p>
+  </form>
+</section>
+
+<!-- ================= DASHBOARD VIEW ================= -->
+<section id="dashboardView" class="dashboard-view hidden">
+
+  <header class="dash-header">
+    <div>
+      <p class="dash-mark">KS / ADMIN</p>
+      <h1>Messages</h1>
+    </div>
+    <div class="dash-header__right">
+      <span id="adminEmail" class="admin-email"></span>
+      <button id="logoutBtn" class="btn btn--ghost btn--small">Log out</button>
+    </div>
+  </header>
+
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card"><span class="stat-label">Total</span><strong id="statTotal">—</strong></div>
+    <div class="stat-card"><span class="stat-label">Unread</span><strong id="statUnread">—</strong></div>
+    <div class="stat-card"><span class="stat-label">Read</span><strong id="statRead">—</strong></div>
+    <div class="stat-card"><span class="stat-label">Replied</span><strong id="statReplied">—</strong></div>
+    <div class="stat-card"><span class="stat-label">Last 7 days</span><strong id="statWeek">—</strong></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab is-active" data-status="">All</button>
+      <button class="filter-tab" data-status="unread">Unread</button>
+      <button class="filter-tab" data-status="read">Read</button>
+      <button class="filter-tab" data-status="replied">Replied</button>
+    </div>
+    <input type="search" id="searchInput" class="search-input" placeholder="Search name, email, or message..." />
+  </div>
+
+  <div class="messages-table-wrap">
+    <table class="messages-table">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>From</th>
+          <th>Subject</th>
+          <th>Received</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="messagesBody">
+        <!-- rows injected by admin.js -->
+      </tbody>
+    </table>
+    <p class="empty-state hidden" id="emptyState">No messages match this view.</p>
+  </div>
+
+  <div class="pagination" id="pagination"></div>
+</section>
+
+<!-- ================= MESSAGE DETAIL MODAL ================= -->
+<div class="modal-backdrop hidden" id="modalBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <p class="modal-meta" id="modalMeta"></p>
+    <h2 id="modalSubject"></h2>
+    <p class="modal-body" id="modalBody"></p>
+    <div class="modal-actions">
+      <div class="status-select">
+        <label for="statusSelect">Status</label>
+        <select id="statusSelect">
+          <option value="unread">Unread</option>
+          <option value="read">Read</option>
+          <option value="replied">Replied</option>
+        </select>
+      </div>
+      <a id="modalReplyLink" class="btn btn--primary btn--small" href="#">Reply by email</a>
+      <button id="modalDeleteBtn" class="btn btn--danger btn--small">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
